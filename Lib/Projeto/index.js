@@ -20,13 +20,26 @@ function trataErro(erro) {
 };*/
 
    //Método assíncrono usando o then e catch: passamos a promessa de radfile que, quando resolvida, retornará o que está dentro de then. Caso de algum erro, o catch chamará a função trataErro passando  o erro que foi gerado:
-function pegaArquivo(caminhoArquivo) {
+/*function pegaArquivo(caminhoArquivo) {
    const encoding = 'utf-8';
    fs.promises
    .readFile(caminhoArquivo, encoding)
    .then((conteudo) => console.log(chalk.green(conteudo)))
    .catch(trataErro);
-}; 
+}; */
+
+   //Método assíncrono usando o async/await e tratamento de erro com try/catch:
+async function pegaArquivo(caminhoArquivo) {
+   try {
+      const encoding = 'utf-8';
+      const conteudo = await fs.promises.readFile(caminhoArquivo, encoding)
+      console.log(chalk.green(conteudo))
+   } catch (erro) {
+      trataErro(erro)
+   } finally {
+      console.log(chalk.yellow('Operação concluída'));
+   }
+};
 
    
 
