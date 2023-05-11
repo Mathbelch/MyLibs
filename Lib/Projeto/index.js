@@ -7,7 +7,9 @@ function trataErro(erro) {
 };
 
 // Se der tudo certo com a função readfile, o conteúdo será exibido no console. Se houver algum erro, a condicional chama a função trataErro passando o erro gerado como parâmetro:
-function pegaArquivo(caminhoArquivo) {
+
+   // Método síncrono:
+/*function pegaArquivo(caminhoArquivo) {
    const encoding = 'UTF-8';
    fs.readFile(caminhoArquivo, encoding, (erro, conteudo) => {
       if (erro) {
@@ -15,6 +17,18 @@ function pegaArquivo(caminhoArquivo) {
       };
       console.log(chalk.green(conteudo));
    }) 
-};
+};*/
+
+   //Método assíncrono usando o then e catch: passamos a promessa de radfile que, quando resolvida, retornará o que está dentro de then. Caso de algum erro, o catch chamará a função trataErro passando  o erro que foi gerado:
+function pegaArquivo(caminhoArquivo) {
+   const encoding = 'utf-8';
+   fs.promises
+   .readFile(caminhoArquivo, encoding)
+   .then((conteudo) => console.log(chalk.green(conteudo)))
+   .catch(trataErro);
+}; 
+
+   
+
 
 pegaArquivo('./arquivos/texto.md');
