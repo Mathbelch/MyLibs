@@ -6,8 +6,13 @@ function extraiLinks(arrLinks) {
 async function checaStatus(listaURLs) {
    const arrStatus = await Promise.all(
       listaURLs.map(async (url) => {
-         const response = await fetch(url);
-         return response.status;
+         try {
+            const response = await fetch(url, { method: 'HEAD'});
+            return response.status;
+         } catch(erro) {
+            return manejaErros(erro);
+         }
+        
       })
    )
    return arrStatus;

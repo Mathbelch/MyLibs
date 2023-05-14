@@ -37,7 +37,7 @@ async function processaConteudo(argumentos) {
    async function imprimeLista(valida, resultado, identificador = '') {
       if (valida) {
          console.log(
-            chalk.yellow('Lista Validada: '), 
+            chalk.green('Lista Validada: '), 
             chalk.black.bgGreen(identificador),
             await listaValidada(resultado));
       } else {
