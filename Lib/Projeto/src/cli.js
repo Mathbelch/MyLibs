@@ -12,7 +12,7 @@ const caminho = process.argv;
 // Vamos usar a biblioteca fs. A função lstatSync() permite iteragir com o argumento específicado. Caso o argumento passado na linha de comando seja um caminho de arquivo  (isFile() = true) iremos chamar a função pegaArquivo direto com o caminho do arquivo; Caso o argumento seja uma pasta (isDirectory() = true), vamos usar o readdir() que retorna um array com os nomes dos arquivos na pasta.
 async function processaConteudo(argumentos) {
    const caminho = argumentos[2];
-   const valida = argumentos[3] === '--valida';
+   const valida = argumentos[3] === 'valida';
 
    try {
       fs.lstatSync(caminho);
