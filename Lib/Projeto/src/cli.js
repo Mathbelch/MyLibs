@@ -11,6 +11,16 @@ const caminho = process.argv;
 // Vamos usar a biblioteca fs. A função lstatSync() permite iteragir com o argumento específicado. Caso o argumento passado na linha de comando seja um caminho de arquivo  (isFile() = true) iremos chamar a função pegaArquivo direto com o caminho do arquivo; Caso o argumento seja uma pasta (isDirectory() = true), vamos usar o readdir() que retorna um array com os nomes dos arquivos na pasta.
 async function processaConteudo(argumentos) {
    const caminho = argumentos[2];
+
+   try {
+      fs.lstatSync(caminho);
+   } catch(erro) {
+      if(erro.code === 'ENOENT') {
+         console.log(chalk.red('Arquivo ou diretório não existente.') + chalk.yellow('\n***Verifique o nome digitado.'));
+         return;
+      }
+   }
+
    if (fs.lstatSync(caminho).isFile()) {
       const resultado = await pegaArquivo(caminho);
       imprimeLista(resultado);
@@ -18,12 +28,15 @@ async function processaConteudo(argumentos) {
       const arquivos = await fs.promises.readdir(caminho);
       arquivos.forEach(async (nomeDeArquivo) => {
          const lista = await pegaArquivo(`${caminho}/${nomeDeArquivo}`);
-         imprimeLista(lista);
+         imprimeLista(lista, nomeDeArquivo);
       })
    }
 
-   function imprimeLista(resultado) {
-      console.log(chalk.yellow('Listas de Links: '), resultado);
+   function imprimeLista(resultado, identificador = '') {
+      console.log(
+         chalk.yellow('Listas de Links: '), 
+         chalk.black.bgGreen(identificador),
+         resultado);
    }
 
    
