@@ -8,7 +8,7 @@ const app = express()
 // Configuring app (express) to be used together with bodyParser, in order to converte the responses from http requests in json format:
 app.use(bodyParser.json());
 
-// Defining the port number for local host:
+// Defining the port number for local host (3000 is a default port for local hosts):
 const port = 3000;
 
 // Testing a request with status 200 end a messagem as response:
