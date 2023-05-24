@@ -11,6 +11,9 @@ router.get('/pessoas/:id', PessoaController.pegaUmaPessoa);
 // Método CREATE:
 router.post('/pessoas', PessoaController.criaPessoa);
 
+// Método RESTORE:
+router.post('/pessoas/:id/restaura', PessoaController.restauraPessoa);
+
 // Método UPDATE:
 router.put('/pessoas/:id', PessoaController.atualizaPessoa);
 
@@ -25,5 +28,7 @@ router.post('/pessoas/:estudanteId/matricula', PessoaController.criaMatricula);
 router.put('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.atualizaMatricula);
 
 router.delete('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.apagaMatricula);
+
+router.post('/pessoas/:estudanteId/matricula/:matriculaId/restaura', PessoaController.restauraMatricula);
 
 module.exports = router;

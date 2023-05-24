@@ -16,4 +16,7 @@ router.put('/turmas/:id', TurmaController.atualizaTurma);
 // Método DELETE:
 router.delete('/turmas/:id', TurmaController.apagaTurma);
 
+// Método RESTORE:
+router.post('/turmas/:id/restaura', TurmaController.restauraTurma);
+
 module.exports = router;
