@@ -4,7 +4,9 @@ const PessoaController = require('../controllers/PessoaController');
 const router = Router();
 
 // Métodos REQUEST:
-router.get('/pessoas', PessoaController.pegaTodasAsPessoas);
+router.get('/pessoas', PessoaController.pegaPessoasAtivas);
+
+router.get('/pessoas/todos', PessoaController.pegaTodasAsPessoas);
 
 router.get('/pessoas/:id', PessoaController.pegaUmaPessoa);
 

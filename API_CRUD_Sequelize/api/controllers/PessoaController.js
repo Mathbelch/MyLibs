@@ -5,14 +5,23 @@ const database = require('../models');
 
 // Criando a classe PessoaControler, com os métodos de CRUD. Os métodos são declarados como static para que seja possível chama-los sem necessitar criar uma nova instância da classe. Vamos definir os métodos como funções assíncronas, para que as operações com await esperem a conexão com o banco de realizada antes de serem executadas:
 class PessoaController {
-   static async pegaTodasAsPessoas(req, res) {
+   static async pegaPessoasAtivas(req, res) {
       try {
-         const todasAsPessoas = await database.Pessoas.findAll();
-         return res.status(200).json(todasAsPessoas);
+         const pessoasAtivas = await database.Pessoas.findAll();
+         return res.status(200).json(pessoasAtivas);
       } catch (error) {
          return res.status(500).json(error.message);
       }
    } 
+
+   static async pegaTodasAsPessoas(req, res) {
+      try {
+         const todasAsPessoas = await database.Pessoas.scope('todos').findAll();
+         return res.status(200).json(todasAsPessoas);
+      } catch (error) {
+         return res.status(500).json(error.message);
+      }
+   }
    
    static async pegaUmaPessoa(req, res) {
       const { id } = req.params;
