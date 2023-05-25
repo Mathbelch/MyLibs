@@ -25,6 +25,8 @@ router.delete('/pessoas/:id', PessoaController.apagaPessoa);
 // Métodos de Matriculas:
 router.get('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.pegaUmaMatricula);
 
+router.get('/pessoas/:estudanteId/matricula', PessoaController.pegaMatriculas);
+
 router.post('/pessoas/:estudanteId/matricula', PessoaController.criaMatricula);
 
 router.put('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.atualizaMatricula);
