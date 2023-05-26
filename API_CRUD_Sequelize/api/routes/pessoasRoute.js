@@ -29,6 +29,8 @@ router.get('/pessoas/:estudanteId/matricula', PessoaController.pegaMatriculas);
 
 router.get('/pessoas/matricula/:turmaId/confirmadas', PessoaController.pegaMatriculasPorTurma);
 
+router.get('/pessoas/matricula/lotada', PessoaController.pegaTurmasLotadas);
+
 router.post('/pessoas/:estudanteId/matricula', PessoaController.criaMatricula);
 
 router.put('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.atualizaMatricula);

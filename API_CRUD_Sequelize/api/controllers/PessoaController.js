@@ -2,6 +2,7 @@
 
 // Importando a pasta com os modelos:
 const database = require('../models');
+const Sequelize = require('sequelize')
 
 // Criando a classe PessoaControler, com os métodos de CRUD. Os métodos são declarados como static para que seja possível chama-los sem necessitar criar uma nova instância da classe. Vamos definir os métodos como funções assíncronas, para que as operações com await esperem a conexão com o banco de realizada antes de serem executadas:
 class PessoaController {
@@ -157,6 +158,23 @@ class PessoaController {
             order: [['estudante_id', 'ASC']]
          })
          return res.status(200).json(todasAsMatriculas);
+      } catch (error) {
+         return res.status(500).json(error.message);
+      }
+   }
+
+   static async pegaTurmasLotadas(req, res) {
+      const lotacaoTurma = 2;
+      try {
+         const turmasLotadas = await database.Matriculas.findAndCountAll({
+            where: {
+               status: 'confirmado'
+            },
+            attributes: ['turma_id'],
+            group: ['turma_id'],
+            having: Sequelize.literal(`COUNT(turma_id) >= ${lotacaoTurma}`)
+         });
+         return res.status(200).json(turmasLotadas.count);
       } catch (error) {
          return res.status(500).json(error.message);
       }
