@@ -33,6 +33,8 @@ router.get('/pessoas/matricula/lotada', PessoaController.pegaTurmasLotadas);
 
 router.post('/pessoas/:estudanteId/matricula', PessoaController.criaMatricula);
 
+router.post('/pessoas/:estudanteId/cancela', PessoaController.cancelaPessoa);
+
 router.put('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.atualizaMatricula);
 
 router.delete('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.apagaMatricula);
