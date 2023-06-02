@@ -1,0 +1,16 @@
+
+{
+   
+   /* Definindo opções de compilação: diretório de saída do código JS na pasta dist, em formato ES6, não permitindo compilação caso tenha erro e não permitindo atribuição implicita de 'any' como tipo das variáveis.
+*/
+   "compilerOptions": {
+      "outDir": "dist/js",
+      "target":"ES6",
+      "noEmitOnError": true,
+      "noImplicitAny": true
+   },
+
+   // Localização arquivos TS:
+   "include": ["app/**/*"]
+
+}
